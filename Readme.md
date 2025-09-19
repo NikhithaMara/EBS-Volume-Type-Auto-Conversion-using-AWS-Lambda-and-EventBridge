@@ -1,6 +1,6 @@
 #### Project: EBS-Volume-Type-Auto-Conversion-using-AWS-Lambda-and-EventBridge:
 #### 🎯 Why I Chose This Project
-Every company must follow compliance policies to manage costs and security across different environments. This project demonstrates how AWS Lambda can be used to enforce such organizational compliance efficiently. It reflects a real-world scenario, helping me understand serverless architecture while addressing practical challen
+Every company must follow compliance policies to manage costs and security across different environments. This project demonstrates how AWS Lambda can be used to enforce such organizational compliance efficiently. It reflects a real-world scenario, helping me understand serverless architecture while addressing practical challenges.
 
 #### 📘 Project Description
 This project enforces an organizational policy ensuring that every newly created EBS volume uses the gp3 volume type instead of gp2, providing better performance and cost-efficiency. Built with a serverless, event-driven architecture leveraging AWS Lambda, CloudWatch, and boto3.
@@ -58,3 +58,18 @@ This project enforces an organizational policy ensuring that every newly created
  | 🔒 **Secure by Design**     | IAM roles restrict access to only required AWS services.                               |
  | 📉 **Cost Optimization**    | Enforces `gp3` usage to improve performance over `gp2`.                                |
 
+#### Upgrading EBS Volumes to gp3: How It Works on AWS and Why It Matters:
+⚙️ How AWS Changes Volume Performance with gp3
+- Switching an EBS volume from gp2 to gp3 updates its performance settings without replacing the disk. AWS adjusts IOPS and throughput via software, delivering faster,
+  more  consistent I/O while the volume stays attached and online.
+- Think of it like increasing speed limits on a highway without rebuilding the road.
+
+💾 What Is EBS Storage?
+- EBS volumes look like physical disks to your EC2 instances but are actually virtualized storage managed across multiple physical devices by AWS for
+  durability and scalability.
+
+🚀 Why Choose gp3?
+- Faster and more consistent IOPS and throughput
+- Independent provisioning of performance
+- Better cost efficiency than gp2
+- In short, gp3 offers better, flexible performance at lower cost.
