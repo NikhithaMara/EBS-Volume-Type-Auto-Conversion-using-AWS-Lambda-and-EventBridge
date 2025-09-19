@@ -1,5 +1,6 @@
 #### 📘 Project Description:
-This project enforces an organizational policy where every newly created EBS volume must use the gp3 volume type instead of gp2 ensuring the better performance. It uses a serverless, event-driven architecture built with:
+This project enforces an organizational policy where every newly created EBS volume must use the gp3 volume type instead of gp2 ensuring the better performance. 
+It uses a serverless, event-driven architecture built with:
 - AWS Lambda — automatically triggered code that runs without managing any infrastructure
 - Amazon EventBridge (CloudWatch Events) — detects the EBS volume creation event and triggers Lambda
 - IAM Roles and Policies — to securely allow Lambda to access EC2
@@ -12,17 +13,15 @@ This project enforces an organizational policy where every newly created EBS vol
 - A new EBS volume is created (e.g., by EC2 launch or manually).
 - EventBridge rule listens for createVolume events from the EC2 service.
 - The rule triggers a Lambda function, passing the event as input.
-- The Lambda:
-  - Extracts the volume ARN from the event (resources key).
-  - Parses the Volume ID from the ARN.
-  - Calls ec2.modify_volume() via Boto3 to change the type to gp3.
+- Lambda function extracts the volume ARN from the event (resources key),Parses the Volume ID from the ARN, Calls ec2.modify_volume() via Boto3 to change the type to gp3.
 
 #### Design Features of why did I chose AWS Lambda/Cloudwatch Eventbridge/Cloudwatch logs:
-✅ Because this uses Lambda, there's no infrastructure to manage. AWS handles scaling automatically, so even if multiple volumes are created at the same time, the Lambda will handle them in parallel without any manual intervention.
-
-✅ CloudWatch Logs are used to monitor Lambda execution. This is essential for debugging and verifying whether the function ran successfully, especially since Lambda runs in the background.
-
-✅ EventBridge (formerly called CloudWatch Events) listens for events like createVolume and routes them to Lambda — since EBS doesn't have built-in trigger support, EventBridge acts as the event listener.
+- Used Lambda, as there's no infrastructure to manage. AWS handles scaling automatically, so even if multiple volumes are created at the same time, the Lambda will
+  handle  them in parallel without any manual intervention and I will pay only for the time executed and only for the number of times it triggered.
+- CloudWatch Logs are used to monitor Lambda execution else I don't know the status of the function. This is essential for debugging and verifying whether the function
+  ran   successfully, especially since Lambda runs in the background.
+- EventBridge (formerly called CloudWatch Events) listens for events like createVolume and routes them to Lambda — since EBS doesn't have built-in trigger
+  support,EventBridge acts as the event listener and a middleman between EBS and Lambda.
 
 #### ✅ Prerequisites:
 - Set up an AWS Lambda function that gets triggered by an event.
@@ -35,12 +34,12 @@ This project enforces an organizational policy where every newly created EBS vol
 #### 🧠 Lessons Learned:
 - Wrote a Lambda handler function that processes event data.
 - Understood how event data is structured and passed into Lambda.
-- Used boto3 clients to communicate with AWS services (like ec2 for EBS).
+- Used boto3 clients to communicate with AWS services (like ec2 for EBS) in python
 - Learned how to set up proper IAM roles and policies for secure access.
 - Built a serverless workflow that responds to AWS events using Python.
 
 #### 🔒 Best Practices & Challenges
-- used least privilege when assigning IAM roles and permissions.
+- Used least privilege when assigning IAM roles and permissions.
 - Common challenges faced includes short parsing errors in JSON caused by mistakes like not using the correct key names.
 - Always check and print the event data in the Lambda handler since you can’t see it directly. Printing it helps you view the data in CloudWatch logs.
 - After printing, safely parse the JSON using the correct key names.
