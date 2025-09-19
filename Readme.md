@@ -1,6 +1,9 @@
-#### 📘 Project Description:
-This project enforces an organizational policy where every newly created EBS volume must use the gp3 volume type instead of gp2 ensuring the better performance. 
-It uses a serverless, event-driven architecture built with:
+#### Project: EBS-Volume-Type-Auto-Conversion-using-AWS-Lambda-and-EventBridge:
+#### 🎯 Why I Chose This Project
+Every company must follow compliance policies to manage costs and security across different environments. This project demonstrates how AWS Lambda can be used to enforce such organizational compliance efficiently. It reflects a real-world scenario, helping me understand serverless architecture while addressing practical challen
+
+#### 📘 Project Description
+This project enforces an organizational policy ensuring that every newly created EBS volume uses the gp3 volume type instead of gp2, providing better performance and cost-efficiency. Built with a serverless, event-driven architecture leveraging AWS Lambda, CloudWatch, and boto3.
 - AWS Lambda — automatically triggered code that runs without managing any infrastructure
 - Amazon EventBridge (CloudWatch Events) — detects the EBS volume creation event and triggers Lambda
 - IAM Roles and Policies — to securely allow Lambda to access EC2
@@ -15,7 +18,7 @@ It uses a serverless, event-driven architecture built with:
 - The rule triggers a Lambda function, passing the event as input.
 - Lambda function extracts the volume ARN from the event (resources key),Parses the Volume ID from the ARN, Calls ec2.modify_volume() via Boto3 to change the type to gp3.
 
-#### Design Features of why did I chose AWS Lambda/Cloudwatch Eventbridge/Cloudwatch logs:
+#### ❓ Design Features of why did I chose AWS Lambda/Cloudwatch Eventbridge/Cloudwatch logs:
 - Used Lambda, as there's no infrastructure to manage. AWS handles scaling automatically, so even if multiple volumes are created at the same time, the Lambda will
   handle  them in parallel without any manual intervention and I will pay only for the time executed and only for the number of times it triggered.
 - CloudWatch Logs are used to monitor Lambda execution else I don't know the status of the function. This is essential for debugging and verifying whether the function
@@ -46,12 +49,12 @@ It uses a serverless, event-driven architecture built with:
 - Note that Lambda logs are written to CloudWatch by default, which helps with debugging.
 
 #### 💡 Key Benefits:
-| Feature                     | Description                                                                            |
-| --------------------------- | -------------------------------------------------------------------------------------- |
-| 🖥️ **Serverless (Lambda)** | No infrastructure to manage. Scales automatically with number of events.               |
-| ⚙️ **Event-Driven**         | Automatically reacts to EBS volume creation in real time.                              |
-| 📊 **CloudWatch Logs**      | Logs are stored in CloudWatch, helping you verify execution and debug issues.          |
-| 🔁 **Auto Scaling**         | Lambda functions run concurrently for multiple EBS events, without any manual scaling. |
-| 🔒 **Secure by Design**     | IAM roles restrict access to only required AWS services (EC2 & logging).               |
-| 📉 **Cost Optimization**    | Enforces `gp3` usage to save cost and improve performance over `gp2`.                  |
+ | Feature                     | Description                                                                            |
+ | --------------------------- | -------------------------------------------------------------------------------------- |
+ | 🖥️ **Serverless (Lambda)** | No infrastructure to manage. Scales automatically with number of events.               |
+ | ⚙️ **Event-Driven**         | Automatically reacts to EBS volume creation in real time.                              |
+ | 📊 **CloudWatch Logs**      | Logs are stored in CloudWatch, helping you verify execution and debug issues.          |
+ | 🔁 **Auto Scaling**         | Lambda functions run concurrently for multiple EBS events, without any manual scaling. |
+ | 🔒 **Secure by Design**     | IAM roles restrict access to only required AWS services (EC2 & logging).               |
+ | 📉 **Cost Optimization**    | Enforces `gp3` usage to save cost and improve performance over `gp2`.                  |
 
