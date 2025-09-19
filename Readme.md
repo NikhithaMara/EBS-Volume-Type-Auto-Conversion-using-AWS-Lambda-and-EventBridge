@@ -51,10 +51,10 @@ This project enforces an organizational policy ensuring that every newly created
 #### 💡 Key Benefits:
  | Feature                     | Description                                                                            |
  | --------------------------- | -------------------------------------------------------------------------------------- |
- | 🖥️ **Serverless (Lambda)** | No infrastructure to manage. Scales automatically with number of events.               |
+ | 🖥️ **Serverless (Lambda)**  | No infrastructure to manage. Scales automatically with number of events.               |
  | ⚙️ **Event-Driven**         | Automatically reacts to EBS volume creation in real time.                              |
  | 📊 **CloudWatch Logs**      | Logs are stored in CloudWatch, helping you verify execution and debug issues.          |
  | 🔁 **Auto Scaling**         | Lambda functions run concurrently for multiple EBS events, without any manual scaling. |
- | 🔒 **Secure by Design**     | IAM roles restrict access to only required AWS services (EC2 & logging).               |
- | 📉 **Cost Optimization**    | Enforces `gp3` usage to save cost and improve performance over `gp2`.                  |
+ | 🔒 **Secure by Design**     | IAM roles restrict access to only required AWS services.                               |
+ | 📉 **Cost Optimization**    | Enforces `gp3` usage to improve performance over `gp2`.                                |
 
